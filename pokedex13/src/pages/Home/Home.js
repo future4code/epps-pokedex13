@@ -9,22 +9,22 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
-          <SimpleCard />
-        </Grid>        
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <SimpleCard />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <SimpleCard />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <SimpleCard />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <SimpleCard />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
+          <SimpleCard />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
           <SimpleCard />
         </Grid>
       </Grid>
