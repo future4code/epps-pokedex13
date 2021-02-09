@@ -7,11 +7,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
+import { goToDetails } from '../../routes/coordinator'
 
 
 export default function SimpleCard(props) {
   const [pokemonImages, setPokemonImages] = useState({})
   const details = props.pokemon.url
+  const history = useHistory();
 
   useEffect(() => {
     getDetails()
@@ -44,7 +47,7 @@ export default function SimpleCard(props) {
       </CardContent>
       <CardActions>
         <Button size="small" variant="contained">Adicionar</Button>
-        <Button size="small" variant="contained">Detalhes</Button>
+        <Button onClick={() => goToDetails(history)} size="small" variant="contained">Detalhes</Button>
       </CardActions>
     </StyledCard>
   );

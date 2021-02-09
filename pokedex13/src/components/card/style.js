@@ -12,4 +12,6 @@ export const ImageContainer = styled.img`
   max-height: 200px;
   border-radius: 10px;
   margin: 0 auto;
+  display: flex;
+  min-width: 40%;
 `
