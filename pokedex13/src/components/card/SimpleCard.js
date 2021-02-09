@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 import { StyledCard, ImageContainer } from './style'
 
@@ -8,17 +9,37 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
-export default function SimpleCard() {
+export default function SimpleCard(props) {
+  const [pokemonImages, setPokemonImages] = useState({})
+  const details = props.pokemon.url
+
+  useEffect(() => {
+    getDetails()
+  }, [])
+
+  const getDetails = () => {
+    axios.get(`${details}`)
+      .then((res) => {
+        // console.log(res.data.sprites)
+        setPokemonImages(res.data.sprites)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   return (
+    // <img 
+    //   src = {pokemonImages.front_default}
+    // />
     <StyledCard elevation={3}>
       <CardContent>
-        <Typography variant="outlined">
-          <strong>Charmander</strong>
+        <Typography>
+          <strong>{props.pokemon.name}</strong>
         </Typography>
         <ImageContainer
-          image="https://picsum.photos/id/1025/300/200"
-          title="PokeDog"
+          src = {pokemonImages.front_default}
+          alt="teste"
         />
       </CardContent>
       <CardActions>

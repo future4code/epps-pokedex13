@@ -7,9 +7,9 @@ export const StyledCard = styled(Card)`
   /* max-height: 300px; */
 `
 
-export const ImageContainer = styled(CardMedia)`
+export const ImageContainer = styled.img`
   /* max-width: 280px; */
-  height: 200px;
+  max-height: 200px;
   border-radius: 10px;
   margin: 0 auto;
 `
