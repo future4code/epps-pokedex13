@@ -5,6 +5,11 @@ export const PokeInfosContainer = styled.main`
   margin: 20px 10vw;
   display: flex;
   justify-content: space-evenly;
+
+  @media (max-width: 420px) {
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 
 export const ImagesContainer = styled.div`
@@ -19,6 +24,14 @@ export const ImgWrapper = styled.img`
   border: 1px solid black;
   border-radius: 10px;
   height: 25vh;
+
+  @media (max-width: 420px) {
+    flex-direction: column;
+    width: 80%;
+    height: 220px;
+    padding: 30px;
+    margin: 20px 0;
+  }
 `;
 
 export const StatsContainer = styled.div`
@@ -30,6 +43,13 @@ export const StatsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  @media (max-width: 420px) {
+    width: 80%;
+    height: 420px;
+    padding: 30px;
+    margin: 20px 0;
+  }
 `;
 
 export const TitleContainer = styled.h2`
@@ -45,8 +65,8 @@ export const TitleContainer = styled.h2`
 `;
 
 export const TextContainer = styled.p`
-    font-size: 1em;
-    padding-left: 10px;
+  font-size: 1em;
+  padding-left: 10px;
 `;
 
 export const TypeAndMovesContainer = styled.div`
@@ -66,10 +86,15 @@ export const TypesContainer = styled.div`
   justify-content: space-around;
 
   p {
-      border: 1px solid black;
-      border-radius: 10px;
-      margin: auto;
-      padding: 2px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    padding: 2px 10px;
+  }
+
+  @media (max-width: 420px) {
+    min-width: 80%;
+    margin: 20px 0;
   }
 `;
 
@@ -80,5 +105,11 @@ export const MovesContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-`;
 
+  @media (max-width: 420px) {
+    width: 80%;
+    height: 420px;
+    padding: 30px;
+    margin: 20px 0;
+  }
+`;

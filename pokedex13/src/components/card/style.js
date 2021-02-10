@@ -1,11 +1,10 @@
-import styled from 'styled-components'
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia'
-
+import styled from "styled-components";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
 
 export const StyledCard = styled(Card)`
   /* max-height: 300px; */
-`
+`;
 
 export const ImageContainer = styled.img`
   /* max-width: 280px; */
@@ -14,4 +13,4 @@ export const ImageContainer = styled.img`
   margin: 0 auto;
   display: flex;
   min-width: 40%;
-`
+`;

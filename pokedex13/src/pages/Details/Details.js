@@ -17,13 +17,13 @@ const Details = () => {
       <h1>Details Page</h1>
       <PokeInfosContainer>
         <ImagesContainer>
-          <ImgWrapper src={'https://picsum.photos/300/300?a=1'}/>
-          <ImgWrapper src={'https://picsum.photos/300/300?a=2'}/>
+          <ImgWrapper src={"https://picsum.photos/300/300?a=1"} />
+          <ImgWrapper src={"https://picsum.photos/300/300?a=2"} />
         </ImagesContainer>
 
         <StatsContainer>
           <TitleContainer>
-            <h1>Poderes</h1> 
+            <h1>Poderes</h1>
           </TitleContainer>
           <TextContainer>
             <p>HP</p>
@@ -32,7 +32,7 @@ const Details = () => {
             <p>special-atack</p>
             <p>special-defence</p>
             <p>speed</p>
-          </TextContainer>   
+          </TextContainer>
         </StatsContainer>
 
         <TypeAndMovesContainer>
@@ -44,14 +44,14 @@ const Details = () => {
           <MovesContainer>
             <TitleContainer>
               <h1>Principais ataques</h1>
-              </TitleContainer>
-              <TextContainer>
-                <p>cut</p>
-                <p>bind</p>
-                <p>wine-whip</p>
-                <p>swords-dance</p>
-                <p>headbutt</p>
-              </TextContainer>  
+            </TitleContainer>
+            <TextContainer>
+              <p>cut</p>
+              <p>bind</p>
+              <p>wine-whip</p>
+              <p>swords-dance</p>
+              <p>headbutt</p>
+            </TextContainer>
           </MovesContainer>
         </TypeAndMovesContainer>
       </PokeInfosContainer>
