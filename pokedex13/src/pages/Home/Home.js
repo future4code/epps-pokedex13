@@ -21,6 +21,7 @@ const Home = () => {
             key={pokemon.url}
             name={pokemon.name}
             url={pokemon.url}
+            handleAdd={() => requests.addPokemon(pokemon)}
           />
         </Grid>
       )

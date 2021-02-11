@@ -5,7 +5,8 @@ import GlobalStateContext from '../contexts/GlobalStateContext'
 
 const GlobalState = (props) => {
   const [pokemonsNameList, setPokemonsNameList] = useState([])
-  const [pokemonsDetails, setPokemonsDetails] = useState([])
+  // const [pokemonsDetails, setPokemonsDetails] = useState([])
+  const [myPokemons, setMyPokemons] = useState([])
   const [url, setUrl] = useState('')
 
   useEffect(() =>  {
@@ -37,10 +38,31 @@ const GlobalState = (props) => {
       })
   }
 
+  const addPokemon = (item) => {
+    console.log("my Pokemons", myPokemons)
+    const index = states.pokemonsNameList.findIndex((i) => i.name === item.name)
+    const newList = [...states.myPokemons]
 
-  const states = {pokemonsNameList, pokemonsDetails, url}
-  const setters = {setPokemonsNameList, setPokemonsDetails, setUrl}
-  const requests = {getPokemons}
+    if (index !== -1) {
+      newList.push(states.pokemonsNameList[index])
+      console.log(states.pokemonsNameList[index])
+      alert('Pokémon adicionado com sucesso!')
+    } else {
+      alert('Pokémon já adicionado à pokedex!')
+    } 
+
+    setters.setMyPokemons (newList)
+    console.log("newList", newList)
+
+  }
+
+  const removePokemon = (item) => {
+    
+  }
+
+  const states = {pokemonsNameList, myPokemons, url}
+  const setters = {setPokemonsNameList, setMyPokemons, setUrl}
+  const requests = {getPokemons, addPokemon}
   const data = {states, setters, requests}
 
   return(
