@@ -1,40 +1,39 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 
 import { Grid } from '@material-ui/core'
 import SimpleCard from '../../components/card/SimpleCard'
-
-import { baseURL } from '../../parameters/baseURL'
+import GlobalState from '../../global/GlobalState'
+import GlobalStateContext from '../../contexts/GlobalStateContext'
 
 const Home = () => {
-  const [pokemonsList, setPokemonsList] = useState([])
+  const { states, setters, requests } = useContext(GlobalStateContext)
 
   useEffect(() => {
-    getPokemons()
+    requests.getPokemons()
   }, [])
 
-  const getPokemons = () => {
-    axios.get(`${baseURL}`)
-      .then((res) => {
-        setPokemonsList(res.data.results)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+  const list = states.pokemonsNameList && 
+    states.pokemonsNameList.map((pokemon) => {
+      return (
+        <Grid item xs={12} sm={6} md={4}>
+          <SimpleCard 
+            key={pokemon.url}
+            name={pokemon.name}
+            url={pokemon.url}
+          />
+        </Grid>
+      )
+    })
 
-  const list = pokemonsList.map((pokemon) => {
-    return (
-      <Grid item xs={12} sm={6} md={4}>
-        <SimpleCard
-          pokemon={pokemon}
-        />
-      </Grid>
-    )
-  })
+    console.log(states.pokemonsNameList)
 
   return (
     <div>
+      {/* {states.pokemonsNameList.length === 0 ? 
+        <p>Carregando...</p> : 
+          {list}
+      } */}
       <h1>Home Page</h1>
       <Grid container spacing={3}>
         {list}

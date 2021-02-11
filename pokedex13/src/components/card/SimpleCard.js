@@ -1,53 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
-
 import { StyledCard, ImageContainer } from './style'
-
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 import { goToDetails } from '../../routes/coordinator'
-
+import GlobalStateContext from '../../contexts/GlobalStateContext'
 
 export default function SimpleCard(props) {
-  const [pokemonImages, setPokemonImages] = useState({})
-  const details = props.pokemon.url
   const history = useHistory();
+  const { states, setters, requests } = useContext(GlobalStateContext)
+  const [images, setImages] = useState('')
+  const url = props.url
 
   useEffect(() => {
-    getDetails()
+    axios.get(`${url}`)
+    .then((res) => {
+      setImages(res.data.sprites.front_default)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }, [])
 
-  const getDetails = () => {
-    axios.get(`${details}`)
-      .then((res) => {
-        // console.log(res.data.sprites)
-        setPokemonImages(res.data.sprites)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-
   return (
-    // <img 
-    //   src = {pokemonImages.front_default}
-    // />
     <StyledCard elevation={3}>
       <CardContent>
         <Typography>
-          <strong>{props.pokemon.name}</strong>
+          {props.name}
         </Typography>
         <ImageContainer
-          src = {pokemonImages.front_default}
-          alt="teste"
+          src = {images}
+          alt = {props.name}
         />
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained">Adicionar</Button>
-        <Button onClick={() => goToDetails(history)} size="small" variant="contained">Detalhes</Button>
+        <Button>Adicionar</Button>
+        <Button>Detalhes</Button>
       </CardActions>
     </StyledCard>
   );

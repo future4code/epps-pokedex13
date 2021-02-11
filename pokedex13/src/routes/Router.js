@@ -11,6 +11,7 @@ const Router = () => {
 
   return (
     <BrowserRouter>
+    {/* HEADER */}
       <Switch>
         
         <Route exact path={'/'}>
