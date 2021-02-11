@@ -12,28 +12,34 @@ import GlobalStateContext from '../../contexts/GlobalStateContext'
 export default function SimpleCard(props) {
   const history = useHistory();
   const { states, setters, requests } = useContext(GlobalStateContext)
+  const [images, setImages] = useState('')
+  const url = props.url
 
-
-  // useEffect(() => {
-  //   requests.getPokemonsDetails(props.pokemon.url)
-  // }, [])
-  // console.log(states.pokemonsDetails)
-
-  // const images = states.pokemonsDetails.map((pokemon) => {
-  //   return (
-  //     <img src={pokemon.sprites.front_default} />
-  //   )
-  // })
+  useEffect(() => {
+    axios.get(`${url}`)
+    .then((res) => {
+      setImages(res.data.sprites.front_default)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }, [])
 
   return (
-    <>
-      {states.pokemonsDetails.length !== 0 ? 
-      <div>
-        <p>{props.pokemon.name}</p> 
-        {/* {images} */}
-      </div>:
-        <p>Buscando informações</p>
-      }
-    </>
+    <StyledCard elevation={3}>
+      <CardContent>
+        <Typography>
+          {props.name}
+        </Typography>
+        <ImageContainer
+          src = {images}
+          alt = {props.name}
+        />
+      </CardContent>
+      <CardActions>
+        <Button>Adicionar</Button>
+        <Button>Detalhes</Button>
+      </CardActions>
+    </StyledCard>
   );
 }

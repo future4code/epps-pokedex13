@@ -8,29 +8,36 @@ import GlobalStateContext from '../../contexts/GlobalStateContext'
 
 const Home = () => {
   const { states, setters, requests } = useContext(GlobalStateContext)
+
   useEffect(() => {
     requests.getPokemons()
   }, [])
 
-  const details = states.pokemonsDetails.map((pokemon) => {
-    return (
-      <p>{pokemon.id} </p>
-      
-    )
-  })
-  console.log(details)
+  const list = states.pokemonsNameList && 
+    states.pokemonsNameList.map((pokemon) => {
+      return (
+        <Grid item xs={12} sm={6} md={4}>
+          <SimpleCard 
+            key={pokemon.url}
+            name={pokemon.name}
+            url={pokemon.url}
+          />
+        </Grid>
+      )
+    })
+
+    console.log(states.pokemonsNameList)
+
   return (
     <div>
-      {states.pokemonsNameList.length === 0 ? 
+      {/* {states.pokemonsNameList.length === 0 ? 
         <p>Carregando...</p> : 
-          states.pokemonsNameList.map((pokemon) => {
-            return (
-              <div key={pokemon.name}>
-                <SimpleCard pokemon={pokemon} />
-              </div>
-            )
-          })
-        }
+          {list}
+      } */}
+      <h1>Home Page</h1>
+      <Grid container spacing={3}>
+        {list}
+      </Grid>
     </div>
   )
 }
