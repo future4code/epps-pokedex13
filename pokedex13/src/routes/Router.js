@@ -13,7 +13,6 @@ const Router = () => {
     <BrowserRouter>
     {/* HEADER */}
       <Switch>
-        
         <Route exact path={'/'}>
           <Home />
         </Route>

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import GlobalStateContext from '../../contexts/GlobalStateContext'
 import styled from 'styled-components'
 import CardPokedex from '../../components/CardPokedex'
 import Grid from '@material-ui/core/Grid'
+
 
 
 // const ContainerPokedex = styled.div`
@@ -31,8 +33,24 @@ import Grid from '@material-ui/core/Grid'
 // const ButtonsContainer = styled.section`
 //   display: flex;
 // `
+
 const Pokedex = () => {
- 
+  const {states, setters, requests} = useContext(GlobalStateContext)
+console.log("mypokemons", states.myPokemons)
+  const myList = states.myPokemons && 
+    states.myPokemons.map((pokemon) => {
+      return(
+      <Grid item xs={12} sm={6} md={4} lg={2}>
+        <CardPokedex 
+          key={pokemon.url}
+          name={pokemon.name}
+          url={pokemon.url}
+        />
+      </Grid>
+      )
+    })
+
+
   return (
     <div>
       <h1>Pokedex</h1>
