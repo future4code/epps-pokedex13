@@ -38,7 +38,7 @@ export default function SimpleCard(props) {
       </CardContent>
       <CardActions>
         <Button onClick={props.handleAdd}>Adicionar</Button>
-        <Button>Detalhes</Button>
+        <Button onClick={()=>goToDetails(history)}>Detalhes</Button>
       </CardActions>
     </StyledCard>
   );

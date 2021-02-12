@@ -1,75 +1,39 @@
-import React, {useContext} from 'react'
-import GlobalStateContext from '../../contexts/GlobalStateContext'
-import styled from 'styled-components'
-import CardPokedex from '../../components/CardPokedex'
-import Grid from '@material-ui/core/Grid'
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import GlobalStateContext from "../../contexts/GlobalStateContext";
+import styled from "styled-components";
+import CardPokedex from "../../components/CardPokedex";
+import Grid from "@material-ui/core/Grid";
 
+const Pokedex = (props) => {
+  const { states, setters, requests } = useContext(GlobalStateContext);
+  const [images, setImages] = useState("");
+  console.log("mypokemons", states.myPokemons);
+  const url = props.url;
 
-
-// const ContainerPokedex = styled.div`
-//   display: grid;
-//   align-items: center;
-//   justify-content: center;
-// `
-
-// const ImagePokedex = styled.image`
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   margin: auto;
-//   padding: 1em;
-//   grid-gap: 20px;
-//   align-items: center;
-//   flex-grow: 1;
-//   justify-content: center;
-// `
-// const Button = styled.button`
-//   display: grid;
-//   justify-content: center;
-//   align-items: center;
-//   width: 120px;
-//   padding: 5px;
-//   border-radius: 5px;   
-// `
-// const ButtonsContainer = styled.section`
-//   display: flex;
-// `
-
-const Pokedex = () => {
-  const {states, setters, requests} = useContext(GlobalStateContext)
-console.log("mypokemons", states.myPokemons)
-  const myList = states.myPokemons && 
+  const list =
+    states.myPokemons &&
     states.myPokemons.map((pokemon) => {
-      return(
-      <Grid item xs={12} sm={6} md={4} lg={2}>
-        <CardPokedex 
-          key={pokemon.url}
-          name={pokemon.name}
-          url={pokemon.url}
-        />
-      </Grid>
-      )
-    })
-
+      return (
+        <Grid item xs={12} sm={6} md={4} lg={2}>
+          <CardPokedex
+            key={pokemon.url}
+            name={pokemon.name}
+            url={pokemon.url}
+            handleRemove={() => requests.removePokemon(pokemon)}
+          />
+        </Grid> 
+      ); 
+    }); 
 
   return (
     <div>
       <h1>Pokedex</h1>
-      {/* <ContainerPokedex>
-        <ImagePokedex>
-          <img src ={"https://picsum.photos/200/300"} />
-        </ImagePokedex>
-          <ButtonsContainer>
-            <Button>Remover</Button>
-            <Button>Ver detalhes</Button>
-          </ButtonsContainer>
-      </ContainerPokedex> */}
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <CardPokedex />
+        <Grid container spacing={3}>
+          {list}
         </Grid>
-      </Grid>
     </div>
-    )
-}
+  );
+};
 
-export default Pokedex
+export default Pokedex;

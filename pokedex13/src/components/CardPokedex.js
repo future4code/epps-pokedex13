@@ -8,13 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 import { goToDetails } from '../../src/routes/coordinator';
 import GlobalStateContext from '../contexts/GlobalStateContext'
-import GlobalState from '../global/GlobalState';
+import { Grid } from '@material-ui/core'
+import SimpleCard from '../components/card/SimpleCard'
 
 export default function CardPokedex(props) {
+  const history = useHistory()
   const {states, setters, requests} = useContext(GlobalStateContext)
   const [images, setImages] = useState('')
   const url = props.url
-  const history = useHistory()
 
   useEffect(() => {
     axios.get(`${url}`)
@@ -26,18 +27,21 @@ export default function CardPokedex(props) {
     })
   }, [])
 
-  return(
-    <StyledCard elevation={2}>
+  return (
+    <StyledCard elevation={3}>
       <CardContent>
         <Typography>
           {props.name}
         </Typography>
-        <ImageContainer src={images} alt={props.name}/>
+        <ImageContainer
+          src = {images}
+          alt = {props.name}
+        />
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained">Remover</Button>
-        <Button onClick={()=>goToDetails(history)} size="small" variant="contained">Detalhes</Button>
+        <Button onClick={props.handleRemove}>Remover</Button>
+        <Button onClick={()=>goToDetails(history)}>Detalhes</Button>
       </CardActions>
     </StyledCard>
-  )
+  );
 }
