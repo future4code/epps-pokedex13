@@ -12,8 +12,12 @@ import {
 } from "./style";
 import axios from "axios";
 import GlobalStateContext from "../../contexts/GlobalStateContext";
+import { useHistory } from "react-router-dom";
+import { goToPokedex, goToHome } from '../../routes/coordinator'
+
 
 const Details = () => {
+  const history = useHistory();
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonImage, setPokemonImage] = useState([]);
@@ -45,6 +49,8 @@ const Details = () => {
   return (
     <div>
       <h1>Details Page</h1>
+      <button onClick={() => goToPokedex(history)}>Ir para Pokédex</button>
+      <button onClick={() => goToHome(history)}>Ir para Home</button>
       {pokemonInfo && (
         <PokeInfosContainer>
           <ImagesContainer>
