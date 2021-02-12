@@ -4,8 +4,11 @@ import GlobalStateContext from "../../contexts/GlobalStateContext";
 import styled from "styled-components";
 import CardPokedex from "../../components/CardPokedex";
 import Grid from "@material-ui/core/Grid";
+import { useHistory } from "react-router-dom";
+import { goToHome } from "../../routes/coordinator";
 
 const Pokedex = (props) => {
+  const history = useHistory();
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [images, setImages] = useState("");
   console.log("mypokemons", states.myPokemons);
@@ -29,6 +32,7 @@ const Pokedex = (props) => {
   return (
     <div>
       <h1>Pokedex</h1>
+      <button onClick={() => goToHome(history)}>Voltar para Home</button>
       <Grid container spacing={3}>
         {list}
       </Grid>
