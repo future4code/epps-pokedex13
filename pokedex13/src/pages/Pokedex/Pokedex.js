@@ -22,16 +22,16 @@ const Pokedex = (props) => {
             url={pokemon.url}
             handleRemove={() => requests.removePokemon(pokemon)}
           />
-        </Grid> 
-      ); 
-    }); 
+        </Grid>
+      );
+    });
 
   return (
     <div>
       <h1>Pokedex</h1>
-        <Grid container spacing={3}>
-          {list}
-        </Grid>
+      <Grid container spacing={3}>
+        {list}
+      </Grid>
     </div>
   );
 };

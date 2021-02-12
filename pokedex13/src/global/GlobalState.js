@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const GlobalState = (props) => {
   const [pokemonsNameList, setPokemonsNameList] = useState([])
-  // const [pokemonsDetails, setPokemonsDetails] = useState([])
+  const [pokemonsDetails, setPokemonsDetails] = useState([])
   const [myPokemons, setMyPokemons] = useState([])
   const [url, setUrl] = useState('')
 
@@ -52,11 +52,8 @@ const GlobalState = (props) => {
     setters.setMyPokemons (newList)
   }
 
-  const goToDetails = (pokemon) => {
-    // <Link to='/details' />
-  }
 
-  const states = {pokemonsNameList, myPokemons, url}
+  const states = {pokemonsNameList, pokemonsDetails, myPokemons, url}
   const setters = {setPokemonsNameList, setMyPokemons, setUrl}
   const requests = {getPokemons, addPokemon, removePokemon}
   const data = {states, setters, requests}
