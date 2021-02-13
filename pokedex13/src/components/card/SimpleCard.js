@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { StyledCard, ImageContainer } from "./style";
+import { StyledCard, ImageContainer, PokeName } from "./style";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -27,9 +27,9 @@ export default function SimpleCard(props) {
   }, []);
 
   return (
-    <StyledCard elevation={3}>
+    <StyledCard elevation={2}>
       <CardContent>
-        <Typography>{props.name}</Typography>
+        <PokeName>{props.name}</PokeName>
         <ImageContainer src={images} alt={props.name} />
       </CardContent>
       <CardActions>

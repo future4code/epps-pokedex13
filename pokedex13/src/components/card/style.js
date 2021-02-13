@@ -4,6 +4,13 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 export const StyledCard = styled(Card)`
   /* max-height: 300px; */
+  min-width: 20vw;
+`;
+
+export const PokeName = styled.h4`
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 1.2em;
 `;
 
 export const ImageContainer = styled.img`

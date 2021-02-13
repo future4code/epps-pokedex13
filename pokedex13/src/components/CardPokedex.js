@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { StyledCard, ImageContainer } from "../components/card/style";
+import { PokeName, StyledCard, ImageContainer } from "../components/card/style";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -31,7 +31,7 @@ export default function CardPokedex(props) {
   return (
     <StyledCard elevation={3}>
       <CardContent>
-        <Typography>{props.name}</Typography>
+        <PokeName>{props.name}</PokeName>
         <ImageContainer src={images} alt={props.name} />
       </CardContent>
       <CardActions>
