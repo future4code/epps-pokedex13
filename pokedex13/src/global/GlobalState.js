@@ -1,69 +1,69 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import {baseURL} from '../parameters/baseURL'
-import GlobalStateContext from '../contexts/GlobalStateContext'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { baseURL } from "../parameters/baseURL";
+import GlobalStateContext from "../contexts/GlobalStateContext";
 
 const GlobalState = (props) => {
-  const [pokemonsNameList, setPokemonsNameList] = useState([])
-  const [pokemonsDetails, setPokemonsDetails] = useState([])
-  const [myPokemons, setMyPokemons] = useState([])
-  const [url, setUrl] = useState('')
+  const [pokemonsNameList, setPokemonsNameList] = useState([]);
+  const [pokemonsDetails, setPokemonsDetails] = useState([]);
+  const [myPokemons, setMyPokemons] = useState([]);
+  const [url, setUrl] = useState("");
 
-  useEffect(() =>  {
-    getPokemons()
-  }, [])
+  useEffect(() => {
+    getPokemons();
+  }, []);
 
   const getPokemons = () => {
-    axios.get(`${baseURL}`)
+    axios
+      .get(`${baseURL}`)
       .then((res) => {
-        setPokemonsNameList(res.data.results)
+        setPokemonsNameList(res.data.results);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
   const removePokemon = (itemRemove) => {
-    if (window.confirm('Deseja remover este Pokémon?')) {
-    const index = states.myPokemons.findIndex((i) => i.name === itemRemove.name)
-    let newList = [... states.myPokemons]
-    if (newList[index].amount === 1) {
-      newList.splice(index, 1)
-    } else {
-      newList[index].amount -= 1
+    if (window.confirm("Deseja remover este Pokémon?")) {
+      const index = states.myPokemons.findIndex(
+        (i) => i.name === itemRemove.name
+      );
+      let newList = [...states.myPokemons];
+      if (newList[index].amount === 1) {
+        newList.splice(index, 1);
+      } else {
+        newList[index].amount -= 1;
+      }
+      setters.setMyPokemons(newList);
     }
-    setters.setMyPokemons(newList)
-  }
-}
+  };
 
   const addPokemon = (item) => {
-    const index = states.myPokemons.findIndex((i) => i.name === item.name)
-    let newList = [...states.myPokemons]
+    const index = states.myPokemons.findIndex((i) => i.name === item.name);
+    let newList = [...states.myPokemons];
 
     if (index === -1) {
-      newList.push({... item, amount: 1})
-      console.log(states.myPokemons[index])
-      alert('Pokémon adicionado com sucesso!')
+      newList.push({ ...item, amount: 1 });
+      console.log(states.myPokemons[index]);
+      alert("Pokémon adicionado com sucesso!");
     } else {
-      alert('Pokémon já adicionado à pokedex!')
-    } 
+      alert("Pokémon já adicionado à pokedex!");
+    }
 
-    setters.setMyPokemons (newList)
-  }
+    setters.setMyPokemons(newList);
+  };
 
+  const states = { pokemonsNameList, pokemonsDetails, myPokemons, url };
+  const setters = { setPokemonsNameList, setMyPokemons, setUrl };
+  const requests = { getPokemons, addPokemon, removePokemon };
+  const data = { states, setters, requests };
 
-  const states = {pokemonsNameList, pokemonsDetails, myPokemons, url}
-  const setters = {setPokemonsNameList, setMyPokemons, setUrl}
-  const requests = {getPokemons, addPokemon, removePokemon}
-  const data = {states, setters, requests}
-
-  return(
+  return (
     <GlobalStateContext.Provider value={data}>
       {props.children}
     </GlobalStateContext.Provider>
-  )
+  );
+};
 
-}
-
-export default GlobalState
+export default GlobalState;
