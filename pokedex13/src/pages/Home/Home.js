@@ -10,13 +10,25 @@ const Home = () => {
   const { states, setters, requests } = useContext(GlobalStateContext);
   const history = useHistory();
 
-  useEffect(() => {
-    requests.getPokemons();
-  }, []);
+  // useEffect(() => {
+  //   requests.getPokemons();
+  // }, []);
+
+  const handleNewList = () => { 
+    setters.setNewPokemons(states.pokemonsNameList.next)
+  }
+
+  const handleOldList = () => {
+    if (states.pokemonsNameList.previous === null) {
+        alert("Pagina não encontrada")
+    } else {
+        setters.setNewPokemons(states.pokemonsNameList.previous)
+    }
+}
 
   const list =
-    states.pokemonsNameList &&
-    states.pokemonsNameList.map((pokemon) => {
+    states.pokemonsNameList.results &&
+    states.pokemonsNameList.results.map((pokemon) => {
       return (
         <Grid item xs={12} sm={6} md={3}>
           <SimpleCard
@@ -33,6 +45,8 @@ const Home = () => {
     <div>
       <ContainerButton>
         <button onClick={() => goToPokedex(history)}>Ir para Pokédex</button>
+        <button onClick={handleOldList}>Lista anterior</button>
+        <button onClick={handleNewList}>Lista nova</button>
       </ContainerButton>
 
       <Grid container spacing={3}>

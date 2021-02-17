@@ -27,7 +27,6 @@ const Details = () => {
     axios
       .get(`${states.url}`)
       .then((res) => {
-        console.log(res.data);
         setPokemonName(res.data.species.name);
         setPokemonImage(res.data.sprites);
         setPokemonInfo(res.data);
