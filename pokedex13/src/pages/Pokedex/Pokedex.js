@@ -10,7 +10,6 @@ const Pokedex = (props) => {
   const history = useHistory();
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [images, setImages] = useState("");
-  console.log("mypokemons", states.myPokemons);
   const url = props.url;
 
   const list =

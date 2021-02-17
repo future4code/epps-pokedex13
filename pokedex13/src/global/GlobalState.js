@@ -4,6 +4,8 @@ import { baseURL } from "../parameters/baseURL";
 import GlobalStateContext from "../contexts/GlobalStateContext";
 
 const GlobalState = (props) => {
+  const [newPokemons, setNewPokemons] = useState(baseURL)
+
   const [pokemonsNameList, setPokemonsNameList] = useState([]);
   const [pokemonsDetails, setPokemonsDetails] = useState([]);
   const [myPokemons, setMyPokemons] = useState([]);
@@ -11,13 +13,13 @@ const GlobalState = (props) => {
 
   useEffect(() => {
     getPokemons();
-  }, []);
+  }, [newPokemons]);
 
   const getPokemons = () => {
     axios
-      .get(`${baseURL}`)
+      .get(newPokemons)
       .then((res) => {
-        setPokemonsNameList(res.data.results);
+        setPokemonsNameList(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -55,7 +57,7 @@ const GlobalState = (props) => {
   };
 
   const states = { pokemonsNameList, pokemonsDetails, myPokemons, url };
-  const setters = { setPokemonsNameList, setMyPokemons, setUrl };
+  const setters = { setPokemonsNameList, setMyPokemons, setUrl, setNewPokemons };
   const requests = { getPokemons, addPokemon, removePokemon };
   const data = { states, setters, requests };
 
