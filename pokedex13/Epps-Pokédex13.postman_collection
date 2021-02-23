@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "4f4d5bbc-8e8a-4629-b55e-44e9e0af5fbd",
+		"name": "Pokédex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Pokemons List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						""
+					]
+				},
+				"description": "Para pegar 20 pokemons da API."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pokemons Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/:id/",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						":id",
+						""
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				},
+				"description": "Para mostrar os detalhes dos pokemons da API."
+			},
+			"response": []
+		}
+	]
+}
